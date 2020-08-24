@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="终端,命令行,快捷键" />
+
+
+<meta name="description" content="CentOS7 图形化界面 退出终端Ctrl+Alt+F1
+CentOS7 图形化界面 进入tty终端什么是tty
+进入tty终端tty1：Ctrl+Alt+F2
+tty2：Ctrl+Alt+F..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    初识终端 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="初识终端">
+            
+            初识终端
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Linux/">Linux</a> <a class="category-link" href="/categories/Linux/CentOS7/">CentOS7</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="tag">命令行</a> <a class="tag-link" href="/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/" rel="tag">快捷键</a> <a class="tag-link" href="/tags/%E7%BB%88%E7%AB%AF/" rel="tag">终端</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/05/23</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="CentOS7-图形化界面-退出终端"><a href="#CentOS7-图形化界面-退出终端" class="headerlink" title="CentOS7 图形化界面 退出终端"></a>CentOS7 图形化界面 退出终端</h1><p>Ctrl+Alt+F1</p>
+<h1 id="CentOS7-图形化界面-进入tty终端"><a href="#CentOS7-图形化界面-进入tty终端" class="headerlink" title="CentOS7 图形化界面 进入tty终端"></a>CentOS7 图形化界面 进入tty终端</h1><h3 id="什么是tty"><a href="#什么是tty" class="headerlink" title="什么是tty"></a>什么是tty</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200821003314196.png" alt="image-20200821003314196"></p>
+<h3 id="进入tty终端"><a href="#进入tty终端" class="headerlink" title="进入tty终端"></a>进入tty终端</h3><p>tty1：Ctrl+Alt+F2</p>
+<p>tty2：Ctrl+Alt+F3</p>
+<p>tty3：Ctrl+Alt+F4</p>
+<p>tty4：Ctrl+Alt+F5</p>
+<p>tty5：Ctrl+Alt+F6</p>
+<h1 id="命令行-Command-Line"><a href="#命令行-Command-Line" class="headerlink" title="命令行(Command Line)"></a>命令行(Command Line)</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822231349093.png" alt="image-20200822231349093"></p>
+<h2 id="命令行提示符"><a href="#命令行提示符" class="headerlink" title="命令行提示符"></a>命令行提示符</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822230436071.png" alt="image-20200822230436071"></p>
+<h2 id="命令行提示符-含义"><a href="#命令行提示符-含义" class="headerlink" title="命令行提示符 含义"></a>命令行提示符 含义</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822230520348.png" alt="image-20200822230520348"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822230543883.png" alt="image-20200822230543883"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822231431710.png" alt="image-20200822231431710"></p>
+<h3 id="用户权限提示"><a href="#用户权限提示" class="headerlink" title="用户权限提示"></a>用户权限提示</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822231242568.png" alt="image-20200822231220638"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822231242568.png" alt="image-20200822231242568"></p>
+<h3 id="切换root用户-及-退出"><a href="#切换root用户-及-退出" class="headerlink" title="切换root用户 及 退出"></a>切换root用户 及 退出</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822231611677.png" alt="image-20200822231611677"></p>
+<h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><p>whoami命令：获取当前登录用户</p>
+<p>date命令：显示当前时间</p>
+<p>ls命令：ls是list的缩写，用于列出当前目录下的文件和目录</p>
+<h1 id="命令的参数及参数赋值"><a href="#命令的参数及参数赋值" class="headerlink" title="命令的参数及参数赋值"></a>命令的参数及参数赋值</h1><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822232752109.png" alt="image-20200822232752109"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822232829270.png" alt="image-20200822232829270"></p>
+<h3 id="短参数"><a href="#短参数" class="headerlink" title="短参数"></a>短参数</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822232913611.png" alt="image-20200822232913611"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822232952844.png" alt="image-20200822232952844"></p>
+<h3 id="长参数"><a href="#长参数" class="headerlink" title="长参数"></a>长参数</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20200822233042216.png" alt="image-20200822233042216"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822233102916.png" alt="image-20200822233102916"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822233131300.png" alt="image-20200822233131300"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822233146092.png" alt="image-20200822233146092"></p>
+<h2 id="参数赋值"><a href="#参数赋值" class="headerlink" title="参数赋值"></a>参数赋值</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200822233255578.png" alt="image-20200822233255578"></p>
+<h1 id="补全命令及命令的历史记录"><a href="#补全命令及命令的历史记录" class="headerlink" title="补全命令及命令的历史记录"></a>补全命令及命令的历史记录</h1><h2 id="命令的自动补齐"><a href="#命令的自动补齐" class="headerlink" title="命令的自动补齐"></a>命令的自动补齐</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823211807148.png" alt="image-20200823211807148"></p>
+<h2 id="命令的历史记录"><a href="#命令的历史记录" class="headerlink" title="命令的历史记录"></a>命令的历史记录</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823212143793.png" alt="image-20200823212143793"></p>
+<h2 id="history命令"><a href="#history命令" class="headerlink" title="history命令"></a>history命令</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823212607259.png" alt="image-20200823212607259"></p>
+<p>演示：</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823212648321.png" alt="image-20200823212648321"></p>
+<h1 id="常用快捷键"><a href="#常用快捷键" class="headerlink" title="常用快捷键"></a>常用快捷键</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823213149072.png" alt="image-20200823213149072"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823213319233.png" alt="image-20200823213319233"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823213415179.png" alt="image-20200823213415179"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200823213504280.png" alt="image-20200823213504280"></p>
+<p>Ctrl+Y：粘贴 用“Ctrl+U / Ctrl+K / Ctrl+W”删除的字符串，有点像“剪切-粘贴”</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/05/23/hexo%E4%BD%BF%E7%94%A8/" class="pre-post btn btn-default" title='hexo使用教程'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            hexo使用教程</span>
+    </a>
+    
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS7-图形化界面-退出终端"><span class="toc-text">CentOS7 图形化界面 退出终端</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS7-图形化界面-进入tty终端"><span class="toc-text">CentOS7 图形化界面 进入tty终端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#什么是tty"><span class="toc-text">什么是tty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#进入tty终端"><span class="toc-text">进入tty终端</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令行-Command-Line"><span class="toc-text">命令行(Command Line)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行提示符"><span class="toc-text">命令行提示符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令行提示符-含义"><span class="toc-text">命令行提示符 含义</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用户权限提示"><span class="toc-text">用户权限提示</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#切换root用户-及-退出"><span class="toc-text">切换root用户 及 退出</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见命令"><span class="toc-text">常见命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令的参数及参数赋值"><span class="toc-text">命令的参数及参数赋值</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#参数"><span class="toc-text">参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#短参数"><span class="toc-text">短参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#长参数"><span class="toc-text">长参数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数赋值"><span class="toc-text">参数赋值</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#补全命令及命令的历史记录"><span class="toc-text">补全命令及命令的历史记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#命令的自动补齐"><span class="toc-text">命令的自动补齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令的历史记录"><span class="toc-text">命令的历史记录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#history命令"><span class="toc-text">history命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常用快捷键"><span class="toc-text">常用快捷键</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
