@@ -1,0 +1,347 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux文件,Linux目录" />
+
+
+<meta name="description" content="创建文件和目录touch命令：创建一个空白的文件​    linux没有一个专门的命令 用来创建空白文件
+​    touch命令的设计初衷 是 修改文件的时间戳(创建、修改时间)
+​    如..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux 目录和文件操作 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux 目录和文件操作">
+            
+            Linux 目录和文件操作
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Linux/">Linux</a> <a class="category-link" href="/categories/Linux/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/Linux%E6%96%87%E4%BB%B6/" rel="tag">Linux文件</a> <a class="tag-link" href="/tags/Linux%E7%9B%AE%E5%BD%95/" rel="tag">Linux目录</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/08/28</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="创建文件和目录"><a href="#创建文件和目录" class="headerlink" title="创建文件和目录"></a>创建文件和目录</h1><h2 id="touch命令：创建一个空白的文件"><a href="#touch命令：创建一个空白的文件" class="headerlink" title="touch命令：创建一个空白的文件"></a>touch命令：创建一个空白的文件</h2><p>​    linux没有一个专门的命令 用来创建空白文件</p>
+<p>​    touch命令的设计初衷 是 修改文件的时间戳(创建、修改时间)</p>
+<p>​    如果touch命令 后面跟着的 文件名是不存在的，就会创建一个文件</p>
+<p>​    例：touch new_file</p>
+<p>​    例：创建多个文件</p>
+<p>​        touch new_file new_file_2 new_file_3</p>
+<h2 id="mkdir命令：创建一个目录"><a href="#mkdir命令：创建一个目录" class="headerlink" title="mkdir命令：创建一个目录"></a>mkdir命令：创建一个目录</h2><p>​    mkdir是mk和dir的缩写，mk：make(创建),dir：directory(目录)</p>
+<p>​    参数-p：递归创建 目录结构</p>
+<p>​        例：mkdir -p one/two/three</p>
+<h1 id="拷贝文件和移动文件"><a href="#拷贝文件和移动文件" class="headerlink" title="拷贝文件和移动文件"></a>拷贝文件和移动文件</h1><h2 id="cp命令：拷贝文件或目录"><a href="#cp命令：拷贝文件或目录" class="headerlink" title="cp命令：拷贝文件或目录"></a>cp命令：拷贝文件或目录</h2><h3 id="拷贝文件"><a href="#拷贝文件" class="headerlink" title="拷贝文件"></a>拷贝文件</h3><p>​    例：拷贝 new_file 文件</p>
+<p>​        cp new_file new_file_copy</p>
+<p>​    例：拷贝 new_file 文件到 其他目录</p>
+<p>​        cp new_file one/</p>
+<p>​    例：拷贝 new_file 文件到 其他目录，同时重命名为 new_file_copy</p>
+<p>​        cp new_file one/new_file_copy</p>
+<h3 id="拷贝目录"><a href="#拷贝目录" class="headerlink" title="拷贝目录"></a>拷贝目录</h3><p>​    拷贝目录，要在cp后添加 -r或-R参数，俩参数作用一样，都是递归的意思</p>
+<p>​    例：拷贝目录 one</p>
+<p>​        cp -r one one_copy</p>
+<h3 id="使用通配符-拷贝"><a href="#使用通配符-拷贝" class="headerlink" title="使用通配符*拷贝"></a>使用通配符*拷贝</h3><p>​    例：cp *.txt folder : 将当前目录下 所以txt文件 拷贝到 folder目录下</p>
+<p>​    例：cp ha* folder ：将当前目录下 所以已ha开头的文件都 拷贝到 folder目录下</p>
+<h2 id="mv命令：移动文件-或目录-、重命名文件-或目录"><a href="#mv命令：移动文件-或目录-、重命名文件-或目录" class="headerlink" title="mv命令：移动文件(或目录)、重命名文件(或目录)"></a>mv命令：移动文件(或目录)、重命名文件(或目录)</h2><h3 id="移动文件"><a href="#移动文件" class="headerlink" title="移动文件"></a>移动文件</h3><p>​    例：将 new_file文件 移动到 one目录下</p>
+<p>​        mv new_file one/</p>
+<h3 id="移动目录"><a href="#移动目录" class="headerlink" title="移动目录"></a>移动目录</h3><p>​    mv命令移动目录 不需要其他参数，和移动文件一样</p>
+<p>​    例：将当前目录下的 new_folder目录(包括子目录和文件)移动到one这个目录</p>
+<p>​        mv new_folder one/</p>
+<h3 id="重名名文件"><a href="#重名名文件" class="headerlink" title="重名名文件"></a>重名名文件</h3><p>​    linux中，没有专门的命令用于重命名文件</p>
+<p>​    mv命令可以重命名文件，是基于其移动文件的机制</p>
+<p>​    经过 mv命令 移动后，原始文件变成了新名字的文件，文件内容不变</p>
+<p>​    例：将new_file 重命名为renamed_file</p>
+<p>​        mv new_file renamed_file</p>
+<h1 id="删除文件和目录"><a href="#删除文件和目录" class="headerlink" title="删除文件和目录"></a>删除文件和目录</h1><h2 id="rm命令：删除文件或目录"><a href="#rm命令：删除文件或目录" class="headerlink" title="rm命令：删除文件或目录"></a>rm命令：删除文件或目录</h2><p>rm是英语remove的意思，表示“移除”</p>
+<p>例：删除当前目录下的 new_file_copy 文件</p>
+<p>​    rm new_file_copy</p>
+<p>删除多个文件  用空格隔开</p>
+<h2 id="常用参数"><a href="#常用参数" class="headerlink" title="常用参数"></a>常用参数</h2><ul>
+<li><p>-i参数：向用户确认是否删除</p>
+<p>  参数有两种回答：”y”表示确认，”n”表示取消</p>
+</li>
+<li><p>-f参数：强制删除，慎用！</p>
+</li>
+<li><p>-r参数：递归删除，可以删除目录，并递归删除 子目录和文件</p>
+<p>  r是 recursive的缩写，表示递归</p>
+</li>
+</ul>
+<p><strong>rm加上 -rf命令 极为危险</strong></p>
+<h2 id="删除整个系统"><a href="#删除整个系统" class="headerlink" title="删除整个系统"></a>删除整个系统</h2><p>​    <strong>sudo rm -rf /</strong></p>
+<p>​    <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200828001851624.png" alt="image-20200828001851624"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200828001904494.png" alt="image-20200828001904494"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200828001916937.png" alt="image-20200828001916937"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200828001945658.png" alt="image-20200828001945658"></p>
+<h2 id="rmdir命令：删除空目录"><a href="#rmdir命令：删除空目录" class="headerlink" title="rmdir命令：删除空目录"></a>rmdir命令：删除空目录</h2><h1 id="创建链接-快捷方式"><a href="#创建链接-快捷方式" class="headerlink" title="创建链接(快捷方式)"></a>创建链接(快捷方式)</h1><h2 id="ln命令：创建链接"><a href="#ln命令：创建链接" class="headerlink" title="ln命令：创建链接"></a>ln命令：创建链接</h2><p>​    ln是link的缩写，用于在文件之间创建链接</p>
+<h2 id="Linux的文件储存："><a href="#Linux的文件储存：" class="headerlink" title="Linux的文件储存："></a>Linux的文件储存：</h2><p>​    每个文件分为三部分：文件名、文件内容、权限</p>
+<p>​    每个文件内容被分配 一个标识号码：inode</p>
+<p>​    每个文件名 通过inode 绑定到文件内容</p>
+<h2 id="链接分类"><a href="#链接分类" class="headerlink" title="链接分类"></a>链接分类</h2><h3 id="硬链接-物理链接-：使链接内容共享同样的内容，inode相同"><a href="#硬链接-物理链接-：使链接内容共享同样的内容，inode相同" class="headerlink" title="硬链接(物理链接)：使链接内容共享同样的内容，inode相同"></a>硬链接(物理链接)：使链接内容共享同样的内容，inode相同</h3><p>​        一旦文件1和文件2之间有硬链接，修改文件 其实 修改的同一个文件</p>
+<p>​        硬链接缺陷：只能创建指向文件的硬链接，不能指向目录(一般情况下)</p>
+<h3 id="软链接-符号链接-："><a href="#软链接-符号链接-：" class="headerlink" title="软链接(符号链接)："></a>软链接(符号链接)：</h3><p>​        软链接可以指向文件和目录，对于目录一般都是用软链接</p>
+<h2 id="创建硬链接"><a href="#创建硬链接" class="headerlink" title="创建硬链接"></a>创建硬链接</h2><p>​    例：创建文件file2，使之成为 文件file1 的硬链接：ln file1 file2</p>
+<p>​    此时 file1 和 file2 通过相同的 inode 指向 相同的文件内容</p>
+<p>​    <strong>删除 file1 与或file2 对另一个文件没有影响</strong></p>
+<p>​        删除任意文件，对共同指向的文件内容没有影响，不会从硬盘删除</p>
+<h3 id="显示文件inode"><a href="#显示文件inode" class="headerlink" title="显示文件inode"></a>显示文件inode</h3><p>​            命令：ls -i</p>
+<h2 id="创建软链接"><a href="#创建软链接" class="headerlink" title="创建软链接"></a>创建软链接</h2><p>​    软链接才真正类似 window下的快捷方式，原理很相似</p>
+<p>​    例：创建file1文件的软链接file2：ln -s file1 file2</p>
+<p>​    此时 file1和file2 俩文件的inode号 不相同</p>
+<p>​    file2是file1的软链接(快捷方式)，所以显示的是file1的内容</p>
+<p>​    <strong>如果file1被删除，file2会变成“死链接”，因为指向的文件不见了</strong></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/08/30/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/04%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90/" class="pre-post btn btn-default" title='Linux 目录和文件操作'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Linux 目录和文件操作</span>
+    </a>
+    
+    
+    <a href="/2020/08/25/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/02%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6/" class="next-post btn btn-default" title='Linux 目录和文件'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux 目录和文件</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#创建文件和目录"><span class="toc-text">创建文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#touch命令：创建一个空白的文件"><span class="toc-text">touch命令：创建一个空白的文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mkdir命令：创建一个目录"><span class="toc-text">mkdir命令：创建一个目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#拷贝文件和移动文件"><span class="toc-text">拷贝文件和移动文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cp命令：拷贝文件或目录"><span class="toc-text">cp命令：拷贝文件或目录</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝文件"><span class="toc-text">拷贝文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拷贝目录"><span class="toc-text">拷贝目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用通配符-拷贝"><span class="toc-text">使用通配符*拷贝</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mv命令：移动文件-或目录-、重命名文件-或目录"><span class="toc-text">mv命令：移动文件(或目录)、重命名文件(或目录)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#移动文件"><span class="toc-text">移动文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#移动目录"><span class="toc-text">移动目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重名名文件"><span class="toc-text">重名名文件</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#删除文件和目录"><span class="toc-text">删除文件和目录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rm命令：删除文件或目录"><span class="toc-text">rm命令：删除文件或目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用参数"><span class="toc-text">常用参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除整个系统"><span class="toc-text">删除整个系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rmdir命令：删除空目录"><span class="toc-text">rmdir命令：删除空目录</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#创建链接-快捷方式"><span class="toc-text">创建链接(快捷方式)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ln命令：创建链接"><span class="toc-text">ln命令：创建链接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux的文件储存："><span class="toc-text">Linux的文件储存：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#链接分类"><span class="toc-text">链接分类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#硬链接-物理链接-：使链接内容共享同样的内容，inode相同"><span class="toc-text">硬链接(物理链接)：使链接内容共享同样的内容，inode相同</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#软链接-符号链接-："><span class="toc-text">软链接(符号链接)：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建硬链接"><span class="toc-text">创建硬链接</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#显示文件inode"><span class="toc-text">显示文件inode</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建软链接"><span class="toc-text">创建软链接</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

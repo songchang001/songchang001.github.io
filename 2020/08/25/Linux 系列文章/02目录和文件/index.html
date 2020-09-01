@@ -1,0 +1,414 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux文件,Linux目录" />
+
+
+<meta name="description" content="Linux下文件分类
+
+
+Linux中 一切皆是文件
+根目录Linux目录结构
+
+Linux根目录的直属子目录
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pwd命令 和 which命令pwd命令
+
+..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux 目录和文件 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux 目录和文件">
+            
+            Linux 目录和文件
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Linux/">Linux</a> <a class="category-link" href="/categories/Linux/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/Linux%E6%96%87%E4%BB%B6/" rel="tag">Linux文件</a> <a class="tag-link" href="/tags/Linux%E7%9B%AE%E5%BD%95/" rel="tag">Linux目录</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/08/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Linux下文件分类"><a href="#Linux下文件分类" class="headerlink" title="Linux下文件分类"></a>Linux下文件分类</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824222824395.png" alt="image-20200824222824395"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824222915326.png" alt="image-20200824222915326"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824222938736.png" alt="image-20200824222938736"></p>
+<p><strong>Linux中 一切皆是文件</strong></p>
+<h1 id="根目录"><a href="#根目录" class="headerlink" title="根目录"></a>根目录</h1><h1 id=""><a href="#" class="headerlink" title=""></a><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223145016.png" alt="image-20200824223145016"></h1><h1 id="Linux目录结构"><a href="#Linux目录结构" class="headerlink" title="Linux目录结构"></a>Linux目录结构</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223356648.png" alt="image-20200824223356648"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223451363.png" alt="image-20200824223451363"></p>
+<h1 id="Linux根目录的直属子目录"><a href="#Linux根目录的直属子目录" class="headerlink" title="Linux根目录的直属子目录"></a>Linux根目录的直属子目录</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223746905.png" alt="image-20200824223746905"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223810785.png" alt="image-20200824223810785"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223846377.png" alt="image-20200824223846377"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824223950049.png" alt="image-20200824223950049"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824224007014.png" alt="image-20200824224007014"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824224109360.png" alt="image-20200824224109360"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824224125888.png" alt="image-20200824224125888"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824224137851.png" alt="image-20200824224137851"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824225737793.png" alt="image-20200824225737793"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824225812174.png" alt="image-20200824225812174"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824225838258.png" alt="image-20200824225838258"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824225905422.png" alt="image-20200824225905422"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824225931436.png" alt="image-20200824225931436"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230007753.png" alt="image-20200824230007753"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230033086.png" alt="image-20200824230033086"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230055525.png" alt="image-20200824230055525"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230144568.png" alt="image-20200824230144568"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230202572.png" alt="image-20200824230202572"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230222580.png" alt="image-20200824230222580"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230347243.png" alt="image-20200824230347243"></p>
+<h1 id="pwd命令-和-which命令"><a href="#pwd命令-和-which命令" class="headerlink" title="pwd命令 和 which命令"></a>pwd命令 和 which命令</h1><h2 id="pwd命令"><a href="#pwd命令" class="headerlink" title="pwd命令"></a>pwd命令</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230706997.png" alt="image-20200824230706997"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824230732780.png" alt="image-20200824230732780"></p>
+<h2 id="which命令"><a href="#which命令" class="headerlink" title="which命令"></a>which命令</h2><p>which命令用于显示一个命令对应的可执行程序的位置</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824231053303.png" alt="image-20200824231053303"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824231114637.png" alt="image-20200824231114637"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824231338497.png" alt="image-20200824231338497"></p>
+<h1 id="ls命令"><a href="#ls命令" class="headerlink" title="ls命令"></a>ls命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200824231524417.png" alt="image-20200824231524417"></p>
+<h2 id="ls常用参数"><a href="#ls常用参数" class="headerlink" title="ls常用参数"></a>ls常用参数</h2><ol>
+<li><p>ls -a：</p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826074410183.png" alt="image-20200826074410183"></p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826074431963.png" alt="image-20200826074431963"></p>
+</li>
+<li><p>ls -l</p>
+<p> 参数使得ls命令列出一个显示文件和目录的详细信息的列表</p>
+<p> 每一个文件或目录都有对应的一行信息</p>
+<p> 结果含义：</p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075129575.png" alt="image-20200826075129575"></p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075111400.png" alt="image-20200826075111400"></p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075148178.png" alt="image-20200826075148178"></p>
+</li>
+</ol>
+<ol start="3">
+<li><p>ls -lh</p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075711747.png" alt="image-20200826075711747"></p>
+</li>
+<li><p>ls -t</p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075650972.png" alt="image-20200826075650972"></p>
+</li>
+</ol>
+<h1 id="cd命令"><a href="#cd命令" class="headerlink" title="cd命令"></a>cd命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826075614658.png" alt="image-20200826075614658"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826080609004.png" alt="image-20200826080609004"></p>
+<h1 id="du命令"><a href="#du命令" class="headerlink" title="du命令"></a>du命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826080812125.png" alt="image-20200826080812125"></p>
+<h2 id="du命令常用参数"><a href="#du命令常用参数" class="headerlink" title="du命令常用参数"></a>du命令常用参数</h2><ol>
+<li><h3 id="du-h：已Ko，Mo，Go的形式显示文件大小"><a href="#du-h：已Ko，Mo，Go的形式显示文件大小" class="headerlink" title="du -h：已Ko，Mo，Go的形式显示文件大小"></a>du -h：已Ko，Mo，Go的形式显示文件大小</h3></li>
+<li><h3 id="du-a："><a href="#du-a：" class="headerlink" title="du -a："></a>du -a：</h3><p> 默认情况下，du命令只显示目录大小</p>
+<p> 加上-a参数，则显示目录和文件的大小</p>
+</li>
+<li><h3 id="du-s：只显示总计大小，不看明细"><a href="#du-s：只显示总计大小，不看明细" class="headerlink" title="du -s：只显示总计大小，不看明细"></a>du -s：只显示总计大小，不看明细</h3></li>
+</ol>
+<h1 id="CentOS终端默认颜色标注"><a href="#CentOS终端默认颜色标注" class="headerlink" title="CentOS终端默认颜色标注"></a>CentOS终端默认颜色标注</h1><p>蓝色：目录</p>
+<p>绿色：可执行文件</p>
+<p>红色：压缩文件</p>
+<p>浅蓝色：链接文件</p>
+<p>灰色：其他文件</p>
+<p>开启颜色标注：ls –color=auto  （默认开启）</p>
+<p>关闭颜色标注：ls –color=none</p>
+<h1 id="显示文件内容"><a href="#显示文件内容" class="headerlink" title="显示文件内容"></a>显示文件内容</h1><h2 id="cat命令-一次性显示文件内容"><a href="#cat命令-一次性显示文件内容" class="headerlink" title="cat命令:一次性显示文件内容"></a>cat命令:一次性显示文件内容</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200826233955503.png" alt="image-20200826233955503"></p>
+<p>参数：-n  输出行号</p>
+<p>​        例：cat -n xxx.log</p>
+<h2 id="less命令：分页显示文件内容"><a href="#less命令：分页显示文件内容" class="headerlink" title="less命令：分页显示文件内容"></a>less命令：分页显示文件内容</h2><h3 id="less命令常用的快捷键"><a href="#less命令常用的快捷键" class="headerlink" title="less命令常用的快捷键"></a>less命令常用的快捷键</h3><ul>
+<li>空格键：读取下一个终端屏幕的行数。与键盘的<strong>PageDown</strong>效果一样。</li>
+<li>回车键：文件内容读取下一行，也就是前进一行。与键盘的<strong>下键</strong>效果一样</li>
+<li>d键：前进半页(半个屏幕)</li>
+<li>b键：后退一页。与键盘上的<strong>PageUp</strong>效果一样</li>
+<li>y键：后退一行。与键盘的<strong>上键</strong>效果一样</li>
+<li>u键：后退半页</li>
+<li>q键：停止读取文件，终止less命令</li>
+</ul>
+<p>​        <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200827001134862.png" alt="image-20200827001134862"></p>
+<h3 id="less命令高级快捷键"><a href="#less命令高级快捷键" class="headerlink" title="less命令高级快捷键"></a>less命令高级快捷键</h3><ul>
+<li><p>=号：显示你在文件的什么位置</p>
+<p>  例：Xorg. 9. log Lines 1-14/338 byte 932/22755 4%(press RETURN)</p>
+<p>  Xorg. 9. log：文件名</p>
+<p>  Lines 1-14/338： 行数 当前页1~14，合计338行</p>
+<p>   byte 932/22755 4%：字符 已阅读932个字符，合计22755个字符，占4%</p>
+<p>  (press RETURN)：按回车 返回</p>
+</li>
+<li><p>h键：显示帮助文档(按q键退出帮助文档)</p>
+</li>
+<li><p>/键(斜杠)：进入搜索模式，在斜杠后面 输入要搜索的文字，按下回车</p>
+<p>  ​    所有符合的搜索结果都将标出</p>
+<p>  ​    按n键 跳转到下一个结果</p>
+<p>  ​    按N键(shift+n) 跳转到上一个结果</p>
+<pre><code>正则表达式也可以用在所有内容中</code></pre></li>
+</ul>
+<h2 id="head命令：显示文件的开头"><a href="#head命令：显示文件的开头" class="headerlink" title="head命令：显示文件的开头"></a>head命令：显示文件的开头</h2><p> 默认情况下回显示文件的头10行</p>
+<h3 id="指定显示行数："><a href="#指定显示行数：" class="headerlink" title="指定显示行数："></a>指定显示行数：</h3><p>​        head -n 100 xxx.log：指定显示文档开头100行</p>
+<h2 id="tail命令：显示文件的结尾"><a href="#tail命令：显示文件的结尾" class="headerlink" title="tail命令：显示文件的结尾"></a>tail命令：显示文件的结尾</h2><p>默认情况下，tail会显示文件的尾10行</p>
+<h3 id="指定显示行数：-1"><a href="#指定显示行数：-1" class="headerlink" title="指定显示行数："></a>指定显示行数：</h3><p>​        tail -n 100 xxx.log：指定显示文档结尾100行</p>
+<h3 id="实时追踪文件更新"><a href="#实时追踪文件更新" class="headerlink" title="实时追踪文件更新"></a>实时追踪文件更新</h3><p>​    tail -f xxx.log：实时追踪xxx.log文件，用Ctrl+c终止</p>
+<p>​    默认情况下，tail -f会每隔1s检查一次文件更新</p>
+<p>​    可以指定间隔检查的秒数，用-s参数：tail -f -s 4 xxx.log</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/08/28/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/03%E7%9B%AE%E5%BD%95%E5%92%8C%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" class="pre-post btn btn-default" title='Linux 目录和文件操作'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Linux 目录和文件操作</span>
+    </a>
+    
+    
+    <a href="/2020/08/23/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/01%E5%88%9D%E8%AF%86%E7%BB%88%E7%AB%AF/" class="next-post btn btn-default" title='初识终端'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            初识终端</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux下文件分类"><span class="toc-text">Linux下文件分类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#根目录"><span class="toc-text">根目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#"><span class="toc-text"></span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux目录结构"><span class="toc-text">Linux目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux根目录的直属子目录"><span class="toc-text">Linux根目录的直属子目录</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#pwd命令-和-which命令"><span class="toc-text">pwd命令 和 which命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#pwd命令"><span class="toc-text">pwd命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#which命令"><span class="toc-text">which命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#ls命令"><span class="toc-text">ls命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ls常用参数"><span class="toc-text">ls常用参数</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cd命令"><span class="toc-text">cd命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#du命令"><span class="toc-text">du命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#du命令常用参数"><span class="toc-text">du命令常用参数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#du-h：已Ko，Mo，Go的形式显示文件大小"><span class="toc-text">du -h：已Ko，Mo，Go的形式显示文件大小</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du-a："><span class="toc-text">du -a：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#du-s：只显示总计大小，不看明细"><span class="toc-text">du -s：只显示总计大小，不看明细</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#CentOS终端默认颜色标注"><span class="toc-text">CentOS终端默认颜色标注</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#显示文件内容"><span class="toc-text">显示文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#cat命令-一次性显示文件内容"><span class="toc-text">cat命令:一次性显示文件内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#less命令：分页显示文件内容"><span class="toc-text">less命令：分页显示文件内容</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#less命令常用的快捷键"><span class="toc-text">less命令常用的快捷键</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#less命令高级快捷键"><span class="toc-text">less命令高级快捷键</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#head命令：显示文件的开头"><span class="toc-text">head命令：显示文件的开头</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#指定显示行数："><span class="toc-text">指定显示行数：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#tail命令：显示文件的结尾"><span class="toc-text">tail命令：显示文件的结尾</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#指定显示行数：-1"><span class="toc-text">指定显示行数：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实时追踪文件更新"><span class="toc-text">实时追踪文件更新</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
