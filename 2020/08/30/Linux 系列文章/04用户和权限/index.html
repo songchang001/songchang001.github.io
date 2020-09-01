@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="Linux用户,Linux权限" />
+
+
+<meta name="description" content="linux系统下的用户组织
+root用户是会默认创建的，是系统大管家，拥有所有权限，可以安装软件、修改系统设置
+日常使用，一般使用 有限权限用户，如：songchang用户
+我们只在必要时才会切..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux 目录和文件操作 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux 目录和文件操作">
+            
+            Linux 目录和文件操作
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/Linux/">Linux</a> <a class="category-link" href="/categories/Linux/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/Linux%E6%9D%83%E9%99%90/" rel="tag">Linux权限</a> <a class="tag-link" href="/tags/Linux%E7%94%A8%E6%88%B7/" rel="tag">Linux用户</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/08/30</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="linux系统下的用户组织"><a href="#linux系统下的用户组织" class="headerlink" title="linux系统下的用户组织"></a>linux系统下的用户组织</h1><ol>
+<li>root用户是会默认创建的，是系统大管家，拥有所有权限，可以安装软件、修改系统设置</li>
+<li>日常使用，一般使用 有限权限用户，如：songchang用户</li>
+<li>我们只在必要时才会切换root身份</li>
+<li>这一保护措施 大大提高了 linux系统的安全性，有效防止误操作和病毒的攻击</li>
+<li>部分命令必须切换root身份才能运行</li>
+</ol>
+<h1 id="切换root用户身份"><a href="#切换root用户身份" class="headerlink" title="切换root用户身份"></a>切换root用户身份</h1><h2 id="以root身份运行命令：sudo命令"><a href="#以root身份运行命令：sudo命令" class="headerlink" title="以root身份运行命令：sudo命令"></a>以root身份运行命令：sudo命令</h2><p>如果要运行 只有root才可以运行的命令，可以在此命令前面加上sudo命令</p>
+<p>例：sudo date</p>
+<p>终端会提示输入密码，此密码是当前用户的密码</p>
+<h2 id="切换root用户方式1：sudo-su命令"><a href="#切换root用户方式1：sudo-su命令" class="headerlink" title="切换root用户方式1：sudo su命令"></a>切换root用户方式1：sudo su命令</h2><p>​    需要输入当前用户 密码</p>
+<h2 id="切换root用户方式2：su-命令"><a href="#切换root用户方式2：su-命令" class="headerlink" title="切换root用户方式2：su 命令"></a>切换root用户方式2：su 命令</h2><p>​    需要切换root用户密码</p>
+<p>​    建议使用：su - 命令，切换root用户并直接跳转到root用户家目录(/root)下</p>
+<h2 id="切换root用户方式3：sudo-i-命令"><a href="#切换root用户方式3：sudo-i-命令" class="headerlink" title="切换root用户方式3：sudo -i 命令"></a>切换root用户方式3：sudo -i 命令</h2><p>​    切换root用户，并直接跳转到root用户家目录下</p>
+<h2 id="退出root用户身份"><a href="#退出root用户身份" class="headerlink" title="退出root用户身份"></a>退出root用户身份</h2><ol>
+<li>Ctrl+d</li>
+<li>exit+回车</li>
+</ol>
+<h1 id="用户管理"><a href="#用户管理" class="headerlink" title="用户管理"></a>用户管理</h1><h2 id="useradd命令：添加新用户"><a href="#useradd命令：添加新用户" class="headerlink" title="useradd命令：添加新用户"></a>useradd命令：添加新用户</h2><p>​    例：useradd lch</p>
+<h2 id="passwd命令：修改用户的密码"><a href="#passwd命令：修改用户的密码" class="headerlink" title="passwd命令：修改用户的密码"></a>passwd命令：修改用户的密码</h2><p>​    例：password lch</p>
+<p>​        然后 两次输入 要设置或修改的密码</p>
+<h2 id="userdel命令：删除用户"><a href="#userdel命令：删除用户" class="headerlink" title="userdel命令：删除用户"></a>userdel命令：删除用户</h2><h4 id="例：userdel-lch"><a href="#例：userdel-lch" class="headerlink" title="例：userdel lch"></a>例：userdel lch</h4><p>​        当前命令会删除用户，但是不会删除用户的家目录 /home/lch</p>
+<h4 id="删除用户并删除用户家目录："><a href="#删除用户并删除用户家目录：" class="headerlink" title="删除用户并删除用户家目录："></a>删除用户并删除用户家目录：</h4><p>​        userdel -r lch 或 userdel –remove lch</p>
+<h1 id="用户群组"><a href="#用户群组" class="headerlink" title="用户群组"></a>用户群组</h1><p>linux中每个用户都属于一个特定的群组</p>
+<p>如果不设置用户群组，默认会创建一个和它用户名一样的群组，并把用户划归到这个群组</p>
+<h2 id="创建群组"><a href="#创建群组" class="headerlink" title="创建群组"></a>创建群组</h2><p>​    例：groupadd friends</p>
+<h2 id="修改用户账户：usermod命令"><a href="#修改用户账户：usermod命令" class="headerlink" title="修改用户账户：usermod命令"></a>修改用户账户：usermod命令</h2><p>​    usermod是 user modify的缩写，modify是修改的意思，用户修改用户账户</p>
+<p>​    参数：</p>
+<ol>
+<li><p>-l参数：重命名</p>
+<p> 重命名后，/home中的家目录名保持不变，需要手动修改</p>
+</li>
+<li><p>-g参数：修改用户所在群组</p>
+<p> 例：usermod -g friends songchang</p>
+</li>
+<li><p>-G参数：一次性将用户 添加多个群组</p>
+<p> 例：usermod -G friends,happy,funny lch</p>
+<p> ​    将 用户lch 添加到 friends、happy 和 funny 三个群组，群组名之间用逗号分隔，且没有空格</p>
+</li>
+<li><p>-a参数：追加群组</p>
+<p> -g和-G参数 会先将用户从原先群组中移除，再追加到新的群组，如果不想移除出来，则加-a参数</p>
+<p> <strong>-a参数只能和 -G参数一起使用</strong></p>
+<p> 例：usermod -ag good lch ：将用户 lch 追加到good群组中</p>
+</li>
+<li></li>
+</ol>
+<h2 id="获知用户所属群组：groups命令"><a href="#获知用户所属群组：groups命令" class="headerlink" title="获知用户所属群组：groups命令"></a>获知用户所属群组：groups命令</h2><p>​        例：groups lch   （用户必须存在）</p>
+<p>​            groups不加任何参数执行，会显示 当前用户所在群组</p>
+<h2 id="删除群组：groupdel命令"><a href="#删除群组：groupdel命令" class="headerlink" title="删除群组：groupdel命令"></a>删除群组：groupdel命令</h2><p>​        例：groupdel good ：删除 good群组</p>
+<h2 id="改变文件所有者：chown命令"><a href="#改变文件所有者：chown命令" class="headerlink" title="改变文件所有者：chown命令"></a>改变文件所有者：chown命令</h2><p>​        chown是change owner的缩写，需要root身份才能运行</p>
+<p>​        例：chown lch file.txt ：将file.txt的所有者改为lch用户</p>
+<p>​                执行后，所有者变为lch用户，群组不变</p>
+<p>​        例：chown lch:friends file.txt ：将file.txt文件的所有者改为lch，群组改为friends</p>
+<p>​        参数：</p>
+<p>​            -R参数：递归改变 文件及子文件的  所有者和群组</p>
+<p>​                例：chown -R songchang:songchang /home/lch</p>
+<p>​                    将lch用户的 家目录和所有子目录、子文件都 占据，让lch用户 无家可归</p>
+<h2 id="改变文件群组：chgrp命令"><a href="#改变文件群组：chgrp命令" class="headerlink" title="改变文件群组：chgrp命令"></a>改变文件群组：chgrp命令</h2><p>​    chgrp是change group的缩写，用于改变文件群组，需要root身份才能运行</p>
+<p>​    例：chgrp lch file.txt ：将file.txt文件的群组改为lch</p>
+<h1 id="访问权限"><a href="#访问权限" class="headerlink" title="访问权限"></a>访问权限</h1><p>​    linux系统中，每个文件和目录都有一列权限属性</p>
+<p>​    访问权限指明了谁有读的权限，谁有修改的权限，谁有运行的权限</p>
+<p>​    在运行命令“ls -l”时，返回结果的第一列就是访问权限</p>
+<p>​        <img src="04%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90/image-20200831213216528.png" alt="image-20200831213216528"></p>
+<p>第一列包含 d、r、l、x、w等字母，可以统称为文件访问权限符</p>
+<h2 id="文件访问权限符含义"><a href="#文件访问权限符含义" class="headerlink" title="文件访问权限符含义"></a>文件访问权限符含义</h2><p>d：directory的缩写，表示目录</p>
+<p>-：普通文件</p>
+<p>l：link的缩写，表示链接</p>
+<p>r：read的缩写，表示可读</p>
+<p>w：write的缩写，表示 可写/修改</p>
+<p>x：execute的缩写，表示 可执行/运行</p>
+<p>​    如果x权限在目录上，表示这个目录可读，可查看其子目录</p>
+<p><strong>如果对应位置有字母，表示有对应权限；对应位置为“-”，表示没有对应权限</strong></p>
+<p>第11位上的”.”：<a href="https://blog.csdn.net/dashuai03091199/article/details/38920833" target="_blank" rel="noopener">https://blog.csdn.net/dashuai03091199/article/details/38920833</a></p>
+<h2 id="权限符-划分"><a href="#权限符-划分" class="headerlink" title="权限符 划分"></a>权限符 划分</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831214555015.png" alt="image-20200831214555015"></p>
+<p>第一组rwx：文件所有者对此文件的访问权限</p>
+<p>第二组rwx：文件所属群组其他用户对此文件的访问权限</p>
+<p>第三组rwx：初前两组的其他用户对此文件的访问权限</p>
+<p><strong>如果有w权限(写的权限)，那么也有删除此文件的权限</strong></p>
+<h2 id="解析-文件file-txt-的权限含义：-rw-rw-r–"><a href="#解析-文件file-txt-的权限含义：-rw-rw-r–" class="headerlink" title="解析 文件file.txt 的权限含义：-rw-rw-r–"></a>解析 文件file.txt 的权限含义：-rw-rw-r–</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831215435615.png" alt="image-20200831215435615"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831215306878.png" alt="image-20200831215306878"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831215333617.png" alt="image-20200831215333617"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831215357827.png" alt="image-20200831215357827"></p>
+<p><strong>root用户是超级用户，它有linux系统所有权限，可以读、写、运行所有文件</strong></p>
+<h2 id="修改文件访问权限：chmod命令"><a href="#修改文件访问权限：chmod命令" class="headerlink" title="修改文件访问权限：chmod命令"></a>修改文件访问权限：chmod命令</h2><p><strong>chmod命令不需要root用户才能运行，只要你是文件的所有者，就可以修改文件的访问权限</strong></p>
+<p>chmod是change mode的缩写，用于修改文件的各种访问权限</p>
+<h3 id="用法一：用数字分配权限"><a href="#用法一：用数字分配权限" class="headerlink" title="用法一：用数字分配权限"></a>用法一：用数字分配权限</h3><p>Linux对每种权限(r、w、x)分配了对应的数字</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221027508.png" alt="image-20200831221027508"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221151052.png" alt="image-20200831221151052"></p>
+<p>下列为数字分配权限可能的所有情况：</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221240698.png" alt="image-20200831221240698"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221341840.png" alt="image-20200831221341840"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221400791.png" alt="image-20200831221400791"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221416681.png" alt="image-20200831221416681"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221442389.png" alt="image-20200831221442389"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221503512.png" alt="image-20200831221503512"></p>
+<h3 id="用法二：用字母分配权限"><a href="#用法二：用字母分配权限" class="headerlink" title="用法二：用字母分配权限"></a>用法二：用字母分配权限</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221607696.png" alt="image-20200831221607696"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221631955.png" alt="image-20200831221631955"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221655098.png" alt="image-20200831221655098"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221714789.png" alt="image-20200831221714789"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221732062.png" alt="image-20200831221732062"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221748760.png" alt="image-20200831221748760"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221811212.png" alt="image-20200831221811212"></p>
+<h3 id="递归修改权限：参数-R"><a href="#递归修改权限：参数-R" class="headerlink" title="递归修改权限：参数-R"></a>递归修改权限：参数-R</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200831221900527.png" alt="image-20200831221900527"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/08/23/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/01%E5%88%9D%E8%AF%86%E7%BB%88%E7%AB%AF/" class="next-post btn btn-default" title='初识终端'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            初识终端</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#linux系统下的用户组织"><span class="toc-text">linux系统下的用户组织</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#切换root用户身份"><span class="toc-text">切换root用户身份</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#以root身份运行命令：sudo命令"><span class="toc-text">以root身份运行命令：sudo命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换root用户方式1：sudo-su命令"><span class="toc-text">切换root用户方式1：sudo su命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换root用户方式2：su-命令"><span class="toc-text">切换root用户方式2：su 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#切换root用户方式3：sudo-i-命令"><span class="toc-text">切换root用户方式3：sudo -i 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#退出root用户身份"><span class="toc-text">退出root用户身份</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户管理"><span class="toc-text">用户管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#useradd命令：添加新用户"><span class="toc-text">useradd命令：添加新用户</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#passwd命令：修改用户的密码"><span class="toc-text">passwd命令：修改用户的密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#userdel命令：删除用户"><span class="toc-text">userdel命令：删除用户</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例：userdel-lch"><span class="toc-text">例：userdel lch</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#删除用户并删除用户家目录："><span class="toc-text">删除用户并删除用户家目录：</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用户群组"><span class="toc-text">用户群组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#创建群组"><span class="toc-text">创建群组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改用户账户：usermod命令"><span class="toc-text">修改用户账户：usermod命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获知用户所属群组：groups命令"><span class="toc-text">获知用户所属群组：groups命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除群组：groupdel命令"><span class="toc-text">删除群组：groupdel命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变文件所有者：chown命令"><span class="toc-text">改变文件所有者：chown命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#改变文件群组：chgrp命令"><span class="toc-text">改变文件群组：chgrp命令</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#访问权限"><span class="toc-text">访问权限</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#文件访问权限符含义"><span class="toc-text">文件访问权限符含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#权限符-划分"><span class="toc-text">权限符 划分</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解析-文件file-txt-的权限含义：-rw-rw-r–"><span class="toc-text">解析 文件file.txt 的权限含义：-rw-rw-r–</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改文件访问权限：chmod命令"><span class="toc-text">修改文件访问权限：chmod命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#用法一：用数字分配权限"><span class="toc-text">用法一：用数字分配权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法二：用字母分配权限"><span class="toc-text">用法二：用字母分配权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#递归修改权限：参数-R"><span class="toc-text">递归修改权限：参数-R</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
