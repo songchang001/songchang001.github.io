@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="查找文件" />
+
+
+<meta name="description" content="快速查找：locate命令locate是英语定位的意思，locate命令用于定位要查找的文件
+locate命令是搜索包含关键字的所有文件和目录
+例：locate rename_file：查找名叫..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux系列文章08 - 查找文件 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux系列文章08 - 查找文件">
+            
+            Linux系列文章08 - 查找文件
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a> <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/Linux/">Linux</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" rel="tag">查找文件</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/09/09</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="快速查找：locate命令"><a href="#快速查找：locate命令" class="headerlink" title="快速查找：locate命令"></a>快速查找：locate命令</h1><p>locate是英语定位的意思，locate命令用于定位要查找的文件</p>
+<p>locate命令是搜索包含关键字的所有文件和目录</p>
+<p>例：locate rename_file：查找名叫rename_file的文件</p>
+<h2 id="locate命令原理"><a href="#locate命令原理" class="headerlink" title="locate命令原理"></a>locate命令原理</h2><p>locate命令不会对实际硬盘进行查找，而是在文件数据库中进行查找</p>
+<p><img src="08%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/image-20200915081847860.png" alt="image-20200915081847860"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200915081935783.png" alt="image-20200915081935783"></p>
+<h2 id="强制更新文件数据库"><a href="#强制更新文件数据库" class="headerlink" title="强制更新文件数据库"></a>强制更新文件数据库</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200915082028956.png" alt="image-20200915082028956"></p>
+<h2 id="locate命令的缺点："><a href="#locate命令的缺点：" class="headerlink" title="locate命令的缺点："></a>locate命令的缺点：</h2><ol>
+<li>locate命令会列出所有在文件数据库中找到的内容</li>
+<li>locate命令不能找到一天内创建的文件(除非更新文件数据库)</li>
+</ol>
+<h1 id="深入查找：find命令"><a href="#深入查找：find命令" class="headerlink" title="深入查找：find命令"></a>深入查找：find命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200915082429681.png" alt="image-20200915082429681"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200915082516813.png" alt="image-20200915082516813"></p>
+<h2 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h2><p>find &lt;何处&gt; &lt;何物&gt; &lt;做什么&gt;   </p>
+<p>何处：在哪个目录中查找，会递归在子目录中查找</p>
+<p>​    find命令可以指定查找目录，若未指定，会在当前目录及其子目录中查找</p>
+<p>何物：找什么，其中&lt;何物&gt;为必填</p>
+<p>​    可以根据名称、大小、最近访问时间来查找</p>
+<p>做什么：找到文件后，可以进行后续处理</p>
+<p>​    默认为打印文件路径</p>
+<h2 id="按名称查找"><a href="#按名称查找" class="headerlink" title="按名称查找"></a>按名称查找</h2><p>例：find -name “new_file”</p>
+<p>​        find /var/log -name “syslog”</p>
+<h2 id="根据文件大小查找"><a href="#根据文件大小查找" class="headerlink" title="根据文件大小查找"></a>根据文件大小查找</h2><p>例：find /var -size +10M ：查找/var中文件大小超过10M的文件</p>
+<p>​    find /var -size -50k ：查找/var中文件大小小于50k的文件</p>
+<p>​    find /var -size 50k ：查找/var中文件大小等于50k的文件</p>
+<h2 id="根据文件最近访问时间查找"><a href="#根据文件最近访问时间查找" class="headerlink" title="根据文件最近访问时间查找"></a>根据文件最近访问时间查找</h2><p>​    -atime参数：access time的缩写，访问时间的意思</p>
+<p>​    例：find -name “*.txt” -atime -7 ：查找7天内访问过的txt文件</p>
+<h2 id="根据文件类型查找"><a href="#根据文件类型查找" class="headerlink" title="根据文件类型查找"></a>根据文件类型查找</h2><pre><code>仅查找目录类型：-type d</code></pre><p>​     仅查找文件类型：-type f</p>
+<h2 id="特点：完全匹配"><a href="#特点：完全匹配" class="headerlink" title="特点：完全匹配"></a>特点：完全匹配</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200916211536384.png" alt="image-20200916211536384"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200916211552992.png" alt="image-20200916211552992"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200916211631244.png" alt="image-20200916211631244"></p>
+<h2 id="操作查找结果"><a href="#操作查找结果" class="headerlink" title="操作查找结果"></a>操作查找结果</h2><p>​    find -name *.jpg 等价于 find -name *.jpg -print</p>
+<h3 id="格式化打印"><a href="#格式化打印" class="headerlink" title="格式化打印"></a>格式化打印</h3><p>​        例：find -name *.txt -printf “%p - %u\n”</p>
+<p>​            %p：文件名</p>
+<p>​            %u：用户名</p>
+<p>​            \n：换行</p>
+<h3 id="删除查找到的文件"><a href="#删除查找到的文件" class="headerlink" title="删除查找到的文件"></a>删除查找到的文件</h3><p>​    例：find -name *.jpg -delete ：删除当前目录及子目录下所有jpg文件</p>
+<p>​            <strong>不会有确认提示，慎用</strong></p>
+<h3 id="调用命令"><a href="#调用命令" class="headerlink" title="调用命令"></a>调用命令</h3><p>例：find one -name “*.txt” -exec chmod 600 {} ;</p>
+<p>​    将one目录下的所有txt文件的权限修改为600</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200916215347257.png" alt="image-20200916215347257"></p>
+<p>例：find one -name “*.txt” -ok chmod 600 {} \</p>
+<p>​    执行时 逐个确认</p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/09/09/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/09%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE/" class="next-post btn btn-default" title='Linux系列文章09 - grep、sort、'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章09 - grep、sort、</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#快速查找：locate命令"><span class="toc-text">快速查找：locate命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#locate命令原理"><span class="toc-text">locate命令原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#强制更新文件数据库"><span class="toc-text">强制更新文件数据库</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#locate命令的缺点："><span class="toc-text">locate命令的缺点：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#深入查找：find命令"><span class="toc-text">深入查找：find命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#按名称查找"><span class="toc-text">按名称查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据文件大小查找"><span class="toc-text">根据文件大小查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据文件最近访问时间查找"><span class="toc-text">根据文件最近访问时间查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据文件类型查找"><span class="toc-text">根据文件类型查找</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特点：完全匹配"><span class="toc-text">特点：完全匹配</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#操作查找结果"><span class="toc-text">操作查找结果</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#格式化打印"><span class="toc-text">格式化打印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除查找到的文件"><span class="toc-text">删除查找到的文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#调用命令"><span class="toc-text">调用命令</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
