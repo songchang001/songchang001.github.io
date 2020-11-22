@@ -220,6 +220,31 @@ cut命令：剪切文件的一部分内容-c参数：根据字符数来剪切​
 <h2 id="黑洞文件"><a href="#黑洞文件" class="headerlink" title="黑洞文件"></a>黑洞文件</h2><p>总是空的文件 =》 /dev/null</p>
 <p>它能使 如何输出到 /dev/null 的数据作废掉，向进入黑洞一样</p>
 <p>当既不想 输出到文件，又不想输出到终端时使用</p>
+<h2 id="输入通定向"><a href="#输入通定向" class="headerlink" title="输入通定向"></a>输入通定向</h2><p>符号：&lt; 、&lt;&lt;  ：从文件和键盘读取</p>
+<p> 不是所有命令都有输入，也不是所有命令都有输出</p>
+<h3 id="命令的输入可以来自于文件或键盘输入"><a href="#命令的输入可以来自于文件或键盘输入" class="headerlink" title="命令的输入可以来自于文件或键盘输入"></a>命令的输入可以来自于文件或键盘输入</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122211917534.png" alt="image-20201122211917534"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122214822404.png" alt="image-20201122214822404"></p>
+<h3 id="从文件中读取：-lt"><a href="#从文件中读取：-lt" class="headerlink" title="从文件中读取：&lt;"></a>从文件中读取：&lt;</h3><p>例：cat &lt; nodes.csv</p>
+<h4 id="cat-nodes-csv-和-cat-lt-nodes-csv-的区别"><a href="#cat-nodes-csv-和-cat-lt-nodes-csv-的区别" class="headerlink" title="cat nodes.csv 和 cat &lt; nodes.csv 的区别"></a>cat nodes.csv 和 cat &lt; nodes.csv 的区别</h4><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122213540459.png" alt="image-20201122213540459"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122213552825.png" alt="image-20201122213552825"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122213807517.png" alt="image-20201122213807517"></p>
+<h3 id="从键盘中读取：-lt-lt"><a href="#从键盘中读取：-lt-lt" class="headerlink" title="从键盘中读取：&lt;&lt;"></a>从键盘中读取：&lt;&lt;</h3><p>&lt;&lt;符号的作用是将键盘的输入重定向为某个命令的输入，已逐行输入的模式，回车键换行</p>
+<p>例：sort -n &lt;&lt; -END</p>
+<p>​        输入这条命令后，按下回车，终端就进入了键盘输入模式</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122214448907.png" alt="image-20201122214448907"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122214711528.png" alt="image-20201122214711528"></p>
+<p><em>结束字符串可以自定义</em></p>
+<h1 id="管道符："><a href="#管道符：" class="headerlink" title="管道符： |"></a>管道符： |</h1><p>作用：建立命令管道</p>
+<p>一个命令的输出 通过管道符 作为另一个命令的输入</p>
+<p>管道也算是重定向流的一种</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122221311303.png" alt="image-20201122221311303"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122221331197.png" alt="image-20201122221331197"></p>
+<h3 id="示例1：按学生名字排序"><a href="#示例1：按学生名字排序" class="headerlink" title="示例1：按学生名字排序"></a>示例1：按学生名字排序</h3><p>例：cut -d , -f 1 nodes.csv | sort &gt; sorted_name.txt</p>
+<h3 id="示例2：根据大小排序目录"><a href="#示例2：根据大小排序目录" class="headerlink" title="示例2：根据大小排序目录"></a>示例2：根据大小排序目录</h3><p>例：du | sort -nr  | head</p>
+<p>sort -nr 按数值(n) 倒叙(r) 排列</p>
+<h3 id="示例3："><a href="#示例3：" class="headerlink" title="示例3："></a>示例3：</h3><p>例：sudo grep log -Ir /var/log | cut -d : -f 1 | sort | uniq</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122223154304.png" alt="image-20201122223154304"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201122223213025.png" alt="image-20201122223213025"></p>
 
     </div>
     
@@ -261,7 +286,7 @@ cut命令：剪切文件的一部分内容-c参数：根据字符数来剪切​
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流、管道"><span class="toc-text">流、管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流"><span class="toc-text">流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道"><span class="toc-text">管道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cut命令：剪切文件的一部分内容"><span class="toc-text">cut命令：剪切文件的一部分内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c参数：根据字符数来剪切"><span class="toc-text">-c参数：根据字符数来剪切</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据分隔符来剪切："><span class="toc-text">根据分隔符来剪切：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stdin、stdout、stderr"><span class="toc-text">stdin、stdout、stderr</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向-1"><span class="toc-text">重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出重定向到文件："><span class="toc-text">输出重定向到文件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件-“-gt-“"><span class="toc-text">重定向到文件 “ &gt; “</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件末尾-“-gt-gt-”"><span class="toc-text">重定向到文件末尾 “ &gt;&gt;”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黑洞文件"><span class="toc-text">黑洞文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流、管道"><span class="toc-text">流、管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流"><span class="toc-text">流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道"><span class="toc-text">管道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cut命令：剪切文件的一部分内容"><span class="toc-text">cut命令：剪切文件的一部分内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c参数：根据字符数来剪切"><span class="toc-text">-c参数：根据字符数来剪切</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据分隔符来剪切："><span class="toc-text">根据分隔符来剪切：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stdin、stdout、stderr"><span class="toc-text">stdin、stdout、stderr</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向-1"><span class="toc-text">重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出重定向到文件："><span class="toc-text">输出重定向到文件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件-“-gt-“"><span class="toc-text">重定向到文件 “ &gt; “</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件末尾-“-gt-gt-”"><span class="toc-text">重定向到文件末尾 “ &gt;&gt;”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黑洞文件"><span class="toc-text">黑洞文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输入通定向"><span class="toc-text">输入通定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令的输入可以来自于文件或键盘输入"><span class="toc-text">命令的输入可以来自于文件或键盘输入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从文件中读取：-lt"><span class="toc-text">从文件中读取：&lt;</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#cat-nodes-csv-和-cat-lt-nodes-csv-的区别"><span class="toc-text">cat nodes.csv 和 cat &lt; nodes.csv 的区别</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#从键盘中读取：-lt-lt"><span class="toc-text">从键盘中读取：&lt;&lt;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#管道符："><span class="toc-text">管道符： |</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#示例1：按学生名字排序"><span class="toc-text">示例1：按学生名字排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例2：根据大小排序目录"><span class="toc-text">示例2：根据大小排序目录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例3："><span class="toc-text">示例3：</span></a></li></ol></li></ol></li></ol>
         
     </div>
 </aside>
