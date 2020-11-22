@@ -22,12 +22,10 @@
 <meta name="keywords" content="linux" />
 
 
-<meta name="description" content="grep命令：筛选数据重定向、流、管道流https://www.zhihu.com/question/27996269/answer/775202240
-重定向
+<meta name="description" content="流、管道流https://www.zhihu.com/question/27996269/answer/775202240
+管道
 
-命令的输出的三个去向
-
-重定向..." />
+cut命令：剪切文件的一部分内容-c参数：根据字符数来剪切​ ..." />
 
 
 <meta name="robots" content="all" />
@@ -38,7 +36,7 @@
 
 <title>
     
-    Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令) |
+    Linux系列文章10 - 输出重定向 |
     
     宋畅的技术博客
 </title>
@@ -155,9 +153,9 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)">
+        <h1 id="Linux系列文章10 - 输出重定向">
             
-            Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)
+            Linux系列文章10 - 输出重定向
             
         </h1>
         <div class="post-meta">
@@ -182,7 +180,7 @@
     <span class="fa-wrap">
         <i class="fa fa-clock-o"></i>
         <span class="date-meta">
-            2020/09/09</span>
+            2020/09/12</span>
     </span>
     
     
@@ -192,12 +190,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h1 id="grep命令：筛选数据"><a href="#grep命令：筛选数据" class="headerlink" title="grep命令：筛选数据"></a>grep命令：筛选数据</h1><h1 id="重定向、流、管道"><a href="#重定向、流、管道" class="headerlink" title="重定向、流、管道"></a>重定向、流、管道</h1><h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p><a href="https://www.zhihu.com/question/27996269/answer/775202240" target="_blank" rel="noopener">https://www.zhihu.com/question/27996269/answer/775202240</a></p>
-<h2 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922215924895.png" alt="image-20200922215924895"></p>
-<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922220232238.png" alt="image-20200922220232238"></p>
-<p><strong>命令的输出的三个去向</strong></p>
-<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20200922220311184.png" alt="image-20200922220311184"></p>
-<h3 id="重定向到文件："><a href="#重定向到文件：" class="headerlink" title="重定向到文件："></a>重定向到文件：</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922220450318.png" alt="image-20200922220450318"></p>
+        <h1 id="流、管道"><a href="#流、管道" class="headerlink" title="流、管道"></a>流、管道</h1><h2 id="流"><a href="#流" class="headerlink" title="流"></a>流</h2><p><a href="https://www.zhihu.com/question/27996269/answer/775202240" target="_blank" rel="noopener">https://www.zhihu.com/question/27996269/answer/775202240</a></p>
 <h2 id="管道"><a href="#管道" class="headerlink" title="管道"></a>管道</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922215957892.png" alt="image-20200922215957892"></p>
 <p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922220010354.png" alt="image-20200922220010354"></p>
 <h1 id="cut命令：剪切文件的一部分内容"><a href="#cut命令：剪切文件的一部分内容" class="headerlink" title="cut命令：剪切文件的一部分内容"></a>cut命令：剪切文件的一部分内容</h1><h2 id="c参数：根据字符数来剪切"><a href="#c参数：根据字符数来剪切" class="headerlink" title="-c参数：根据字符数来剪切"></a>-c参数：根据字符数来剪切</h2><p>​    例：cut -c 2-4 name.txt ：剪切每行第2~4个字母</p>
@@ -205,8 +198,28 @@
 <p>​        d是demiliter的缩写，分割符的意思</p>
 <p>​    -f参数：指定剪切区域，指定剪切 分隔符 分割后的哪一块区域</p>
 <p>​        f是filed的缩写，区域的意思</p>
-<p>​    例：cut -d , -f 1 name.cvs</p>
+<p>​    例：cut -d , -f 1 notes.cvs  剪切第一部分 名字</p>
 <p>​    <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922232044647.png" alt="image-20200922232044647"></p>
+<p>​    例：cut -d , -f 2- notes.cvs  剪切第二部分 直到最后</p>
+<h1 id="stdin、stdout、stderr"><a href="#stdin、stdout、stderr" class="headerlink" title="stdin、stdout、stderr"></a>stdin、stdout、stderr</h1><p>stdin是标准输入，一般指键盘输入到<a href="https://baike.baidu.com/item/缓冲区/4830555" target="_blank" rel="noopener">缓冲区</a>里的东西。</p>
+<p>stdout是标准输出，指终端输出的信息（不包括错误信息）</p>
+<p>stderr是标准错误输出，指终端输出的错误信息</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201106083005105.png" alt="image-20201106083005105"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201106083057992.png" alt="image-20201106083057992"></p>
+<h1 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h1><h2 id="重定向-1"><a href="#重定向-1" class="headerlink" title="重定向"></a>重定向</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922215924895.png" alt="image-20200922215924895"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922220232238.png" alt="image-20200922220232238"></p>
+<p><strong>命令的输出的三个去向</strong></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20200922220311184.png" alt="image-20200922220311184"></p>
+<h2 id="输出重定向到文件："><a href="#输出重定向到文件：" class="headerlink" title="输出重定向到文件："></a>输出重定向到文件：</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20200922220450318.png" alt="image-20200922220450318"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201106081133344.png" alt="image-20201106081133344"></p>
+<h3 id="重定向到文件-“-gt-“"><a href="#重定向到文件-“-gt-“" class="headerlink" title="重定向到文件 “ &gt; “"></a>重定向到文件 “ &gt; “</h3><p>例：cut -d , -f 1 nodes.cvs &gt; student.txt</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20201106080334812.png" alt="image-20201106080334812"></p>
+<h3 id="重定向到文件末尾-“-gt-gt-”"><a href="#重定向到文件末尾-“-gt-gt-”" class="headerlink" title="重定向到文件末尾 “ &gt;&gt;”"></a>重定向到文件末尾 “ &gt;&gt;”</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201106080947883.png" alt="image-20201106080947883"></p>
+<p>例：cut -d , -f 1 nodes.cvs &gt;&gt; student.txt</p>
+<p>常见用途：记录日志，追加程序运行结果</p>
+<h2 id="黑洞文件"><a href="#黑洞文件" class="headerlink" title="黑洞文件"></a>黑洞文件</h2><p>总是空的文件 =》 /dev/null</p>
+<p>它能使 如何输出到 /dev/null 的数据作废掉，向进入黑洞一样</p>
+<p>当既不想 输出到文件，又不想输出到终端时使用</p>
 
     </div>
     
@@ -225,17 +238,17 @@
 </article>
 <div class="article-nav prev-next-wrap clearfix">
     
-    <a href="/2020/09/09/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/09%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE/" class="pre-post btn btn-default" title='Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)'>
+    <a href="/2020/10/12/%E6%9D%82%E8%AE%B0/%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E6%8A%80%E8%83%BD%E6%8F%90%E5%8D%87/" class="pre-post btn btn-default" title='产品经理技能提升'>
         <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
         <span class="hidden-xs">
-            Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)</span>
+            产品经理技能提升</span>
     </a>
     
     
-    <a href="/2020/09/05/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/08%E6%9F%A5%E6%89%BE%E6%96%87%E4%BB%B6/" class="next-post btn btn-default" title='Linux系列文章08 - 查找文件'>
+    <a href="/2020/09/09/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/09%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE/" class="next-post btn btn-default" title='Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)'>
         <span class="hidden-lg">下一篇</span>
         <span class="hidden-xs">
-            Linux系列文章08 - 查找文件</span><i class="fa fa-angle-right fa-fw"></i>
+            Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)</span><i class="fa fa-angle-right fa-fw"></i>
     </a>
     
 </div>
@@ -248,7 +261,7 @@
             文章目录
         </h3>
         
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#grep命令：筛选数据"><span class="toc-text">grep命令：筛选数据</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重定向、流、管道"><span class="toc-text">重定向、流、管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流"><span class="toc-text">流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件："><span class="toc-text">重定向到文件：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道"><span class="toc-text">管道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cut命令：剪切文件的一部分内容"><span class="toc-text">cut命令：剪切文件的一部分内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c参数：根据字符数来剪切"><span class="toc-text">-c参数：根据字符数来剪切</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据分隔符来剪切："><span class="toc-text">根据分隔符来剪切：</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#流、管道"><span class="toc-text">流、管道</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#流"><span class="toc-text">流</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#管道"><span class="toc-text">管道</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cut命令：剪切文件的一部分内容"><span class="toc-text">cut命令：剪切文件的一部分内容</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#c参数：根据字符数来剪切"><span class="toc-text">-c参数：根据字符数来剪切</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#根据分隔符来剪切："><span class="toc-text">根据分隔符来剪切：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stdin、stdout、stderr"><span class="toc-text">stdin、stdout、stderr</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#重定向"><span class="toc-text">重定向</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#重定向-1"><span class="toc-text">重定向</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#输出重定向到文件："><span class="toc-text">输出重定向到文件：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件-“-gt-“"><span class="toc-text">重定向到文件 “ &gt; “</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定向到文件末尾-“-gt-gt-”"><span class="toc-text">重定向到文件末尾 “ &gt;&gt;”</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#黑洞文件"><span class="toc-text">黑洞文件</span></a></li></ol></li></ol>
         
     </div>
 </aside>
