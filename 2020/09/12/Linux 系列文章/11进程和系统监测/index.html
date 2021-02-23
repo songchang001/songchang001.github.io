@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="linux" />
+
+
+<meta name="description" content="Linux是多任务多用户的操作系统
+查询系统常用命令W命令：都有谁，在做什么？​    快速了解系统登录用户、系统运行时间、系统负载等
+
+例：
+
+w命令 第一行输出内容 就是uptime命令的输..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux系列文章11 - 进程和系统监控 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux系列文章11 - 进程和系统监控">
+            
+            Linux系列文章11 - 进程和系统监控
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a> <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/Linux/">Linux</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/linux/" rel="tag">linux</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/09/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Linux是多任务多用户的操作系统"><a href="#Linux是多任务多用户的操作系统" class="headerlink" title="Linux是多任务多用户的操作系统"></a>Linux是多任务多用户的操作系统</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201204214938717.png" alt="image-20201204214938717"></p>
+<h1 id="查询系统常用命令"><a href="#查询系统常用命令" class="headerlink" title="查询系统常用命令"></a>查询系统常用命令</h1><h2 id="W命令：都有谁，在做什么？"><a href="#W命令：都有谁，在做什么？" class="headerlink" title="W命令：都有谁，在做什么？"></a>W命令：都有谁，在做什么？</h2><p>​    快速了解系统登录用户、系统运行时间、系统负载等</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201205182710347.png" alt="image-20201205182710347"></p>
+<p>例：</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201205182227011.png" alt="image-20201205182227011"></p>
+<p><strong>w命令 第一行输出内容 就是uptime命令的输出内容</strong></p>
+<h1 id="查询进程常用命令"><a href="#查询进程常用命令" class="headerlink" title="查询进程常用命令"></a>查询进程常用命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201205215023560.png" alt="image-20201205215023560"></p>
+<h2 id="ps命令：显示系统进程-静态列表"><a href="#ps命令：显示系统进程-静态列表" class="headerlink" title="ps命令：显示系统进程 静态列表"></a>ps命令：显示系统进程 静态列表</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201205215150623.png" alt="image-20201205215150623"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20201205215208340.png" alt="image-20201205215208340"></p>
+<h3 id="不带参数执行ps命令："><a href="#不带参数执行ps命令：" class="headerlink" title="不带参数执行ps命令："></a>不带参数执行ps命令：</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210211164345627.png" alt="image-20210211164345627"></p>
+<p>当前用户在当前terminal(终端)中的所以进程</p>
+<h3 id="参数：-ef-列出所有进程"><a href="#参数：-ef-列出所有进程" class="headerlink" title="参数：-ef   列出所有进程"></a>参数：-ef   列出所有进程</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20210221222551872.png" alt="image-20210221222551872"></p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210221222454565.png" alt="image-20210221222454565"></p>
+<h3 id="参数：-efH-已乔木状-列出所有进程"><a href="#参数：-efH-已乔木状-列出所有进程" class="headerlink" title="参数：-efH 已乔木状 列出所有进程"></a>参数：-efH 已乔木状 列出所有进程</h3><h3 id="参数：-u-username-列出指定用户运行的进程"><a href="#参数：-u-username-列出指定用户运行的进程" class="headerlink" title="参数：-u username  列出指定用户运行的进程"></a>参数：-u username  列出指定用户运行的进程</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210221235243663.png" alt="image-20210221235243663"></p>
+<h3 id="参数：-aux-通过-cup和内存-使用来过滤进程"><a href="#参数：-aux-通过-cup和内存-使用来过滤进程" class="headerlink" title="参数：-aux 通过 cup和内存 使用来过滤进程"></a>参数：-aux 通过 cup和内存 使用来过滤进程</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210221235907284.png" alt="image-20210221235907284"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210221235938411.png" alt="image-20210221235938411"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210221235953349.png" alt="image-20210221235953349"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222000128790.png" alt="image-20210222000128790"></p>
+<h2 id="pstree命令：已树形结构显示进程"><a href="#pstree命令：已树形结构显示进程" class="headerlink" title="pstree命令：已树形结构显示进程"></a>pstree命令：已树形结构显示进程</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222000251288.png" alt="image-20210222000251288"></p>
+<h2 id="top命令：进程的动态列表"><a href="#top命令：进程的动态列表" class="headerlink" title="top命令：进程的动态列表"></a>top命令：进程的动态列表</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20210222230138168.png" alt="image-20210222230138168"></p>
+<p>top命令只展示一屏进程，默认是按照使用处理器的比率来排序的</p>
+<h3 id="按键"><a href="#按键" class="headerlink" title="按键"></a>按键</h3><p>q：退出top</p>
+<p>h：显示帮助文档</p>
+<p>B：加粗某些信息</p>
+<p>f/F：添加或删除某些列，改版进程列表排序所参照的列，排序默认按照%CPU来排序</p>
+<p>u：按用户来过滤进程</p>
+<p>k：结束某个进程</p>
+<p>s：改变页面刷新时间</p>
+<h1 id="Linux中查询进程的软件"><a href="#Linux中查询进程的软件" class="headerlink" title="Linux中查询进程的软件"></a>Linux中查询进程的软件</h1><h2 id="glances软件"><a href="#glances软件" class="headerlink" title="glances软件"></a>glances软件</h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install epel* -y</span><br><span class="line">yum install python-pip python-devel -y</span><br><span class="line">yum install glances -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行：glances"><a href="#运行：glances" class="headerlink" title="运行：glances"></a>运行：glances</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222231905509.png" alt="image-20210222231905509"></p>
+<h2 id="htop软件"><a href="#htop软件" class="headerlink" title="htop软件"></a>htop软件</h2><h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install epel* -y</span><br><span class="line">yum install htop -y</span><br></pre></td></tr></table></figure>
+
+<h3 id="运行：htop"><a href="#运行：htop" class="headerlink" title="运行：htop"></a>运行：htop</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232116849.png" alt="image-20210222232116849"></p>
+<h1 id="停止进程的几种方法"><a href="#停止进程的几种方法" class="headerlink" title="停止进程的几种方法"></a>停止进程的几种方法</h1><h2 id="Ctrl-C：停止终端中正在运行的进程"><a href="#Ctrl-C：停止终端中正在运行的进程" class="headerlink" title="Ctrl+C：停止终端中正在运行的进程"></a>Ctrl+C：停止终端中正在运行的进程</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232622647.png" alt="image-20210222232622647"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232651238.png" alt="image-20210222232651238"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232727168.png" alt="image-20210222232727168"></p>
+<h2 id="kill命令：结束一个进程"><a href="#kill命令：结束一个进程" class="headerlink" title="kill命令：结束一个进程"></a>kill命令：结束一个进程</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232810059.png" alt="image-20210222232810059"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232842625.png" alt="image-20210222232842625"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222232945986.png" alt="image-20210222232945986"></p>
+<h2 id="killall：结束多个进程"><a href="#killall：结束多个进程" class="headerlink" title="killall：结束多个进程"></a>killall：结束多个进程</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222233037305.png" alt="image-20210222233037305"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222233144665.png" alt="image-20210222233144665"></p>
+<p>例：killall find</p>
+<h1 id="停止和重启系统"><a href="#停止和重启系统" class="headerlink" title="停止和重启系统"></a>停止和重启系统</h1><h2 id="halt：关闭系统"><a href="#halt：关闭系统" class="headerlink" title="halt：关闭系统"></a>halt：关闭系统</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222233623622.png" alt="image-20210222233623622"></p>
+<h2 id="reboot：重启系统"><a href="#reboot：重启系统" class="headerlink" title="reboot：重启系统"></a>reboot：重启系统</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222233658502.png" alt="image-20210222233658502"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222233906902.png" alt="image-20210222233906902"></p>
+<h2 id="poweroff：关机"><a href="#poweroff：关机" class="headerlink" title="poweroff：关机"></a>poweroff：关机</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210222234051670.png" alt="image-20210222234051670"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2020/09/12/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/12%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B/" class="pre-post btn btn-default" title='Linux系列文章12 - 管理后台进程'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章12 - 管理后台进程</span>
+    </a>
+    
+    
+    <a href="/2020/09/09/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/09%E7%AD%9B%E9%80%89%E6%95%B0%E6%8D%AE/" class="next-post btn btn-default" title='Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章09 - 数据操作(grep、sort、wc、uniq、cat命令)</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux是多任务多用户的操作系统"><span class="toc-text">Linux是多任务多用户的操作系统</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查询系统常用命令"><span class="toc-text">查询系统常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#W命令：都有谁，在做什么？"><span class="toc-text">W命令：都有谁，在做什么？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查询进程常用命令"><span class="toc-text">查询进程常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ps命令：显示系统进程-静态列表"><span class="toc-text">ps命令：显示系统进程 静态列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#不带参数执行ps命令："><span class="toc-text">不带参数执行ps命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数：-ef-列出所有进程"><span class="toc-text">参数：-ef   列出所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数：-efH-已乔木状-列出所有进程"><span class="toc-text">参数：-efH 已乔木状 列出所有进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数：-u-username-列出指定用户运行的进程"><span class="toc-text">参数：-u username  列出指定用户运行的进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参数：-aux-通过-cup和内存-使用来过滤进程"><span class="toc-text">参数：-aux 通过 cup和内存 使用来过滤进程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pstree命令：已树形结构显示进程"><span class="toc-text">pstree命令：已树形结构显示进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#top命令：进程的动态列表"><span class="toc-text">top命令：进程的动态列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#按键"><span class="toc-text">按键</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Linux中查询进程的软件"><span class="toc-text">Linux中查询进程的软件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#glances软件"><span class="toc-text">glances软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行：glances"><span class="toc-text">运行：glances</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#htop软件"><span class="toc-text">htop软件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-1"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行：htop"><span class="toc-text">运行：htop</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#停止进程的几种方法"><span class="toc-text">停止进程的几种方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Ctrl-C：停止终端中正在运行的进程"><span class="toc-text">Ctrl+C：停止终端中正在运行的进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#kill命令：结束一个进程"><span class="toc-text">kill命令：结束一个进程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#killall：结束多个进程"><span class="toc-text">killall：结束多个进程</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#停止和重启系统"><span class="toc-text">停止和重启系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#halt：关闭系统"><span class="toc-text">halt：关闭系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#reboot：重启系统"><span class="toc-text">reboot：重启系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#poweroff：关机"><span class="toc-text">poweroff：关机</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
