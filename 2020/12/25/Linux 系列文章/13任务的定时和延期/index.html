@@ -1,0 +1,334 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="定时,延期" />
+
+
+<meta name="description" content="date命令
+ 
+at命令：延时执行一个程序
+在指定时刻执行程序
+
+
+
+在明天执行命令
+在2019年12月19日执行命令
+在指定时间间隔之后执行程序在10分钟之后执行指定程序
+at命令的一些关键..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux系列文章13 - 任务的定时和延期 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux系列文章13 - 任务的定时和延期">
+            
+            Linux系列文章13 - 任务的定时和延期
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a> <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/Linux/">Linux</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/%E5%AE%9A%E6%97%B6/" rel="tag">定时</a> <a class="tag-link" href="/tags/%E5%BB%B6%E6%9C%9F/" rel="tag">延期</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2020/12/25</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="date命令"><a href="#date命令" class="headerlink" title="date命令"></a>date命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301221947275.png" alt="image-20210301221947275"></p>
+<p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222008688.png" alt="image-20210301222008688"></p>
+<h1 id="at命令：延时执行一个程序"><a href="#at命令：延时执行一个程序" class="headerlink" title="at命令：延时执行一个程序"></a>at命令：延时执行一个程序</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222152584.png" alt="image-20210301222152584"></p>
+<h2 id="在指定时刻执行程序"><a href="#在指定时刻执行程序" class="headerlink" title="在指定时刻执行程序"></a>在指定时刻执行程序</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222250807.png" alt="image-20210301222250807"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222326709.png" alt="image-20210301222326709"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222355306.png" alt="image-20210301222355306"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222427725.png" alt="image-20210301222427725"></p>
+<h3 id="在明天执行命令"><a href="#在明天执行命令" class="headerlink" title="在明天执行命令"></a>在明天执行命令</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222519547.png" alt="image-20210301222519547"></p>
+<h3 id="在2019年12月19日执行命令"><a href="#在2019年12月19日执行命令" class="headerlink" title="在2019年12月19日执行命令"></a>在2019年12月19日执行命令</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222607850.png" alt="image-20210301222607850"></p>
+<h2 id="在指定时间间隔之后执行程序"><a href="#在指定时间间隔之后执行程序" class="headerlink" title="在指定时间间隔之后执行程序"></a>在指定时间间隔之后执行程序</h2><h3 id="在10分钟之后执行指定程序"><a href="#在10分钟之后执行指定程序" class="headerlink" title="在10分钟之后执行指定程序"></a>在10分钟之后执行指定程序</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222739866.png" alt="image-20210301222739866"></p>
+<h2 id="at命令的一些关键字"><a href="#at命令的一些关键字" class="headerlink" title="at命令的一些关键字"></a>at命令的一些关键字</h2><p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222835230.png" alt="image-20210301222835230"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222852999.png" alt="image-20210301222852999"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301222914209.png" alt="image-20210301222914209"></p>
+<h1 id="atq命令：列出正等待执行的at任务"><a href="#atq命令：列出正等待执行的at任务" class="headerlink" title="atq命令：列出正等待执行的at任务"></a>atq命令：列出正等待执行的at任务</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301223028565.png" alt="image-20210301223028565"></p>
+<h1 id="atrm命令：删除正在等待执行的at任务"><a href="#atrm命令：删除正在等待执行的at任务" class="headerlink" title="atrm命令：删除正在等待执行的at任务"></a>atrm命令：删除正在等待执行的at任务</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225336232.png" alt="image-20210301225336232"></p>
+<h1 id="【-】：隔开多个命令"><a href="#【-】：隔开多个命令" class="headerlink" title="【;】：隔开多个命令"></a>【;】：隔开多个命令</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225452121.png" alt="image-20210301225452121"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225509144.png" alt="image-20210301225509144"></p>
+<h1 id="sleep命令：休息一会"><a href="#sleep命令：休息一会" class="headerlink" title="sleep命令：休息一会"></a>sleep命令：休息一会</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225548023.png" alt="image-20210301225548023"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225610283.png" alt="image-20210301225610283"></p>
+<p>默认，sleep后面的数值表示秒，也可以指定其他时间单位</p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225836248.png" alt="image-20210301225836248"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225850533.png" alt="image-20210301225850533"></p>
+<h1 id="amp-amp-和-符合"><a href="#amp-amp-和-符合" class="headerlink" title="&amp;&amp;和||符合"></a>&amp;&amp;和||符合</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225933884.png" alt="image-20210301225933884"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301225950454.png" alt="image-20210301225950454"></p>
+<h1 id="crontab命令："><a href="#crontab命令：" class="headerlink" title="crontab命令："></a>crontab命令：</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230030735.png" alt="image-20210301230030735"></p>
+<h2 id="安装crontab"><a href="#安装crontab" class="headerlink" title="安装crontab"></a>安装crontab</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230058213.png" alt="image-20210301230058213"></p>
+<p><img src="13%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9A%E6%97%B6%E5%92%8C%E5%BB%B6%E6%9C%9F/image-20210301230118271.png" alt="image-20210301230118271"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230153412.png" alt="image-20210301230153412"></p>
+<h2 id="前期配置工作"><a href="#前期配置工作" class="headerlink" title="前期配置工作"></a>前期配置工作</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230234418.png" alt="image-20210301230234418"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230250255.png" alt="image-20210301230250255"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230332404.png" alt="image-20210301230332404"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230401680.png" alt="image-20210301230401680"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301230430082.png" alt="image-20210301230430082"></p>
+<h2 id="crontab是什么？"><a href="#crontab是什么？" class="headerlink" title="crontab是什么？"></a>crontab是什么？</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232517574.png" alt="image-20210301232517574"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232545440.png" alt="image-20210301232545440"></p>
+<h2 id="crontab的参数"><a href="#crontab的参数" class="headerlink" title="crontab的参数"></a>crontab的参数</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232621947.png" alt="image-20210301232621947"></p>
+<h2 id="修改crontab文件"><a href="#修改crontab文件" class="headerlink" title="修改crontab文件"></a>修改crontab文件</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232850228.png" alt="image-20210301232850228"></p>
+<h3 id="文件每行格式"><a href="#文件每行格式" class="headerlink" title="文件每行格式"></a>文件每行格式</h3><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232917979.png" alt="image-20210301232917979"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301232946277.png" alt="image-20210301232946277"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233002559.png" alt="image-20210301233002559"></p>
+<h2 id="例：每天22点10分在家目录下创建file-txt文件"><a href="#例：每天22点10分在家目录下创建file-txt文件" class="headerlink" title="例：每天22点10分在家目录下创建file.txt文件"></a>例：每天22点10分在家目录下创建file.txt文件</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233236484.png" alt="image-20210301233236484"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233250469.png" alt="image-20210301233250469"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233308229.png" alt="image-20210301233308229"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233624825.png" alt="image-20210301233624825"></p>
+<h2 id="其他示例："><a href="#其他示例：" class="headerlink" title="其他示例："></a>其他示例：</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233421751.png" alt="image-20210301233421751"></p>
+<h2 id="删除crontab文件"><a href="#删除crontab文件" class="headerlink" title="删除crontab文件"></a>删除crontab文件</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301233755973.png" alt="image-20210301233755973"></p>
+
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    <a href="/2021/01/12/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/14%E6%96%87%E4%BB%B6%E7%9A%84%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B/" class="pre-post btn btn-default" title='Linux系列文章14 - 文件的压缩和解压'>
+        <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章14 - 文件的压缩和解压</span>
+    </a>
+    
+    
+    <a href="/2020/12/12/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/12%E7%AE%A1%E7%90%86%E5%90%8E%E5%8F%B0%E8%BF%9B%E7%A8%8B/" class="next-post btn btn-default" title='Linux系列文章12 - 管理后台进程'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章12 - 管理后台进程</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#date命令"><span class="toc-text">date命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#at命令：延时执行一个程序"><span class="toc-text">at命令：延时执行一个程序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在指定时刻执行程序"><span class="toc-text">在指定时刻执行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在明天执行命令"><span class="toc-text">在明天执行命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在2019年12月19日执行命令"><span class="toc-text">在2019年12月19日执行命令</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在指定时间间隔之后执行程序"><span class="toc-text">在指定时间间隔之后执行程序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#在10分钟之后执行指定程序"><span class="toc-text">在10分钟之后执行指定程序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#at命令的一些关键字"><span class="toc-text">at命令的一些关键字</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#atq命令：列出正等待执行的at任务"><span class="toc-text">atq命令：列出正等待执行的at任务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#atrm命令：删除正在等待执行的at任务"><span class="toc-text">atrm命令：删除正在等待执行的at任务</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#【-】：隔开多个命令"><span class="toc-text">【;】：隔开多个命令</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#sleep命令：休息一会"><span class="toc-text">sleep命令：休息一会</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#amp-amp-和-符合"><span class="toc-text">&amp;&amp;和||符合</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#crontab命令："><span class="toc-text">crontab命令：</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装crontab"><span class="toc-text">安装crontab</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#前期配置工作"><span class="toc-text">前期配置工作</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crontab是什么？"><span class="toc-text">crontab是什么？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crontab的参数"><span class="toc-text">crontab的参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改crontab文件"><span class="toc-text">修改crontab文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件每行格式"><span class="toc-text">文件每行格式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例：每天22点10分在家目录下创建file-txt文件"><span class="toc-text">例：每天22点10分在家目录下创建file.txt文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他示例："><span class="toc-text">其他示例：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除crontab文件"><span class="toc-text">删除crontab文件</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="宋畅的技术博客">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <meta name="theme-version" content="1.2.3">
+    <meta name="root" content="/">
+    <link rel="dns-prefetch" href="http://yoursite.com">
+    <!--SEO-->
+
+<meta name="keywords" content="归档,压缩、解压,tar、gzip、bzip2、zip" />
+
+
+<meta name="description" content="Liunx下常用的压缩解压软件
+
+打包和压缩
+
+
+
+tar命令：将多个文件归档参数-cvf：创建一个tar归档
+
+
+参数-tf：显示归档例的内容，并不解开归档
+参数-rvf：追加文件到归档 
+参..." />
+
+
+<meta name="robots" content="all" />
+<meta name="google" content="all" />
+<meta name="googlebot" content="all" />
+<meta name="verify" content="all" />
+    <!--Title-->
+
+<title>
+    
+    Linux系列文章14 - 文件的压缩和解压 |
+    
+    宋畅的技术博客
+</title>
+
+<link rel="alternate" href="/atom.xml" title="宋畅的技术博客" type="application/atom+xml">
+
+
+<link rel="icon" href="/favicon.ico">
+
+    
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7.css">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.7.0.css">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash.css">
+
+    
+<div class="hide">
+    <script type="text/javascript">
+    var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+</div>
+
+
+
+
+    
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+<body>
+    <header class="main-header"  style="background-image:url(
+    http://snippet.shenliyang.com/img/banner.jpg)"
+     >
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title='宋畅'>
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+            <!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+            <img src="/img/branding.png" alt="Snippet 博客主题" class="img-responsive center-block">
+            
+        </div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                        <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://yoursite.com">
+                        宋畅的技术博客</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/"><i class="fa "></i>
+                                首页</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/前端/"><i class="fa "></i>
+                                前端</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/后端/"><i class="fa "></i>
+                                后台</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/服务器/"><i class="fa "></i>
+                                服务器</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/数据库/"><i class="fa "></i>
+                                数据库</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/categories/其他/"><i class="fa "></i>
+                                其他</a>
+                        </li>
+                        
+                        <li role="presentation" class="text-center">
+                            <a href="/archives/"><i class="fa "></i>
+                                时间轴</a>
+                        </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux系列文章14 - 文件的压缩和解压">
+            
+            Linux系列文章14 - 文件的压缩和解压
+            
+        </h1>
+        <div class="post-meta">
+    
+    <span class="categories-meta fa-wrap">
+        <i class="fa fa-folder-open-o"></i>
+        <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a> <a class="category-link" href="/categories/%E6%9C%8D%E5%8A%A1%E5%99%A8/Linux/">Linux</a>
+    </span>
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-tags"></i>
+        <span class="tags-meta">
+            
+            <a class="tag-link" href="/tags/tar%E3%80%81gzip%E3%80%81bzip2%E3%80%81zip/" rel="tag">tar、gzip、bzip2、zip</a> <a class="tag-link" href="/tags/%E5%8E%8B%E7%BC%A9%E3%80%81%E8%A7%A3%E5%8E%8B/" rel="tag">压缩、解压</a> <a class="tag-link" href="/tags/%E5%BD%92%E6%A1%A3/" rel="tag">归档</a>
+            
+        </span>
+    </span>
+    
+    
+    
+    <span class="fa-wrap">
+        <i class="fa fa-clock-o"></i>
+        <span class="date-meta">
+            2021/01/12</span>
+    </span>
+    
+    
+</div>
+        
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Liunx下常用的压缩解压软件"><a href="#Liunx下常用的压缩解压软件" class="headerlink" title="Liunx下常用的压缩解压软件"></a>Liunx下常用的压缩解压软件</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301235854451.png" alt="image-20210301235854451"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210301235907915.png" alt="image-20210301235907915"></p>
+<h1 id="打包和压缩"><a href="#打包和压缩" class="headerlink" title="打包和压缩"></a>打包和压缩</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302000057661.png" alt="image-20210302000057661"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302000117874.png" alt="image-20210302000117874"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302000151525.png" alt="image-20210302000151525"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302000208176.png" alt="image-20210302000208176"></p>
+<h1 id="tar命令：将多个文件归档"><a href="#tar命令：将多个文件归档" class="headerlink" title="tar命令：将多个文件归档"></a>tar命令：将多个文件归档</h1><h2 id="参数-cvf：创建一个tar归档"><a href="#参数-cvf：创建一个tar归档" class="headerlink" title="参数-cvf：创建一个tar归档"></a>参数-cvf：创建一个tar归档</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233227306.png" alt="image-20210302233227306"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233420379.png" alt="image-20210302233420379"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233451716.png" alt="image-20210302233451716"></p>
+<h2 id="参数-tf：显示归档例的内容，并不解开归档"><a href="#参数-tf：显示归档例的内容，并不解开归档" class="headerlink" title="参数-tf：显示归档例的内容，并不解开归档"></a>参数-tf：显示归档例的内容，并不解开归档</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233605929.png" alt="image-20210302233605929"></p>
+<h2 id="参数-rvf：追加文件到归档"><a href="#参数-rvf：追加文件到归档" class="headerlink" title="参数-rvf：追加文件到归档"></a>参数-rvf：追加文件到归档</h2><p> <img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233714147.png" alt="image-20210302233714147"></p>
+<h2 id="参数-xvf：解开归档"><a href="#参数-xvf：解开归档" class="headerlink" title="参数-xvf：解开归档"></a>参数-xvf：解开归档</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233745296.png" alt="image-20210302233745296"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302233941213.png" alt="image-20210302233941213"></p>
+<h1 id="gzip和bzip2命令：压缩归档"><a href="#gzip和bzip2命令：压缩归档" class="headerlink" title="gzip和bzip2命令：压缩归档"></a>gzip和bzip2命令：压缩归档</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210303000731241.png" alt="image-20210303000731241"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302234026618.png" alt="image-20210302234026618"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302234048197.png" alt="image-20210302234048197"></p>
+<h2 id="gzip用法："><a href="#gzip用法：" class="headerlink" title="gzip用法："></a>gzip用法：</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302234146885.png" alt="image-20210302234146885"></p>
+<h2 id="bzip2命令用法："><a href="#bzip2命令用法：" class="headerlink" title="bzip2命令用法："></a>bzip2命令用法：</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302234530934.png" alt="image-20210302234530934"></p>
+<h1 id="gunzip和bunzip2命令：解压"><a href="#gunzip和bunzip2命令：解压" class="headerlink" title="gunzip和bunzip2命令：解压"></a>gunzip和bunzip2命令：解压</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302234721677.png" alt="image-20210302234721677"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302235027595.png" alt="image-20210302235027595"></p>
+<h1 id="用tar命令同时归档和压缩"><a href="#用tar命令同时归档和压缩" class="headerlink" title="用tar命令同时归档和压缩"></a>用tar命令同时归档和压缩</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgmarkdownImgimage-20210302235134698.png" alt="image-20210302235134698"></p>
+<h2 id="参数-zcvf：归档，然后用gzip来压缩归档"><a href="#参数-zcvf：归档，然后用gzip来压缩归档" class="headerlink" title="参数-zcvf：归档，然后用gzip来压缩归档"></a>参数-zcvf：归档，然后用gzip来压缩归档</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302235555334.png" alt="image-20210302235555334"></p>
+<h2 id="参数-jcvf：归档，然后用bzip2来压缩归档"><a href="#参数-jcvf：归档，然后用bzip2来压缩归档" class="headerlink" title="参数-jcvf：归档，然后用bzip2来压缩归档"></a>参数-jcvf：归档，然后用bzip2来压缩归档</h2><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210302235654476.png" alt="image-20210302235654476"></p>
+<h1 id="命令zcat-bzcat-zmore-bzmore-zless-bzless"><a href="#命令zcat-bzcat-zmore-bzmore-zless-bzless" class="headerlink" title="命令zcat/bzcat,zmore/bzmore,zless/bzless"></a>命令zcat/bzcat,zmore/bzmore,zless/bzless</h1><p>显示用gzip/bzip2 压缩的文件内容</p>
+<h1 id="命令zip-unzip：压缩-解压zip文件"><a href="#命令zip-unzip：压缩-解压zip文件" class="headerlink" title="命令zip/unzip：压缩/解压zip文件"></a>命令zip/unzip：压缩/解压zip文件</h1><p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210303000501737.png" alt="image-20210303000501737"></p>
+<p><img src="https://img-1253527041.cos.ap-shanghai.myqcloud.com/markdownImgimage-20210303000543986.png" alt="image-20210303000543986"></p>
+<h1 id="命令rar-unrar：压缩-解压rar文件"><a href="#命令rar-unrar：压缩-解压rar文件" class="headerlink" title="命令rar/unrar：压缩/解压rar文件"></a>命令rar/unrar：压缩/解压rar文件</h1>
+    </div>
+    
+    <div class="post-footer">
+        <div>
+            
+            转载声明：
+            商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="" target="_blank">宋畅</a>
+            
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+    <a href="/2020/12/25/Linux%20%E7%B3%BB%E5%88%97%E6%96%87%E7%AB%A0/13%E4%BB%BB%E5%8A%A1%E7%9A%84%E5%AE%9A%E6%97%B6%E5%92%8C%E5%BB%B6%E6%9C%9F/" class="next-post btn btn-default" title='Linux系列文章13 - 任务的定时和延期'>
+        <span class="hidden-lg">下一篇</span>
+        <span class="hidden-xs">
+            Linux系列文章13 - 任务的定时和延期</span><i class="fa fa-angle-right fa-fw"></i>
+    </a>
+    
+</div>
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">
+            文章目录
+        </h3>
+        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Liunx下常用的压缩解压软件"><span class="toc-text">Liunx下常用的压缩解压软件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#打包和压缩"><span class="toc-text">打包和压缩</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#tar命令：将多个文件归档"><span class="toc-text">tar命令：将多个文件归档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-cvf：创建一个tar归档"><span class="toc-text">参数-cvf：创建一个tar归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-tf：显示归档例的内容，并不解开归档"><span class="toc-text">参数-tf：显示归档例的内容，并不解开归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-rvf：追加文件到归档"><span class="toc-text">参数-rvf：追加文件到归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-xvf：解开归档"><span class="toc-text">参数-xvf：解开归档</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gzip和bzip2命令：压缩归档"><span class="toc-text">gzip和bzip2命令：压缩归档</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#gzip用法："><span class="toc-text">gzip用法：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#bzip2命令用法："><span class="toc-text">bzip2命令用法：</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#gunzip和bunzip2命令：解压"><span class="toc-text">gunzip和bunzip2命令：解压</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#用tar命令同时归档和压缩"><span class="toc-text">用tar命令同时归档和压缩</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-zcvf：归档，然后用gzip来压缩归档"><span class="toc-text">参数-zcvf：归档，然后用gzip来压缩归档</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参数-jcvf：归档，然后用bzip2来压缩归档"><span class="toc-text">参数-jcvf：归档，然后用bzip2来压缩归档</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令zcat-bzcat-zmore-bzmore-zless-bzless"><span class="toc-text">命令zcat&#x2F;bzcat,zmore&#x2F;bzmore,zless&#x2F;bzless</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令zip-unzip：压缩-解压zip文件"><span class="toc-text">命令zip&#x2F;unzip：压缩&#x2F;解压zip文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#命令rar-unrar：压缩-解压rar文件"><span class="toc-text">命令rar&#x2F;unrar：压缩&#x2F;解压rar文件</span></a></li></ol>
+        
+    </div>
+</aside>
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+<a id="back-to-top" class="icon-btn hide">
+    <i class="fa fa-chevron-up"></i>
+</a>
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy;
+                    2017
+                    
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="/js/app.js?rev=@@hash.js"></script>
+
+</body>
+</html>
